@@ -1,8 +1,15 @@
 class PackagesController < ApplicationController
+require "date"
+
+
   def index
     matching_packages = Package.all
 
-    @list_of_packages = matching_packages.order({ :created_at => :desc })
+    @list_of_packages = matching_packages.order({ :arrival_day => :asc })
+
+now = Date.today
+@three_days_ago = now - 3
+
 
     render({ :template => "packages/index.html.erb" })
   end
@@ -27,7 +34,7 @@ class PackagesController < ApplicationController
 
     if the_package.valid?
       the_package.save
-      redirect_to("/packages", { :notice => "Package created successfully." })
+      redirect_to("/packages", { :notice => "Added to list." })
     else
       redirect_to("/packages", { :alert => the_package.errors.full_messages.to_sentence })
     end
