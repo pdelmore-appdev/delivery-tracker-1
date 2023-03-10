@@ -31,7 +31,7 @@
 
       <div>
         <label for="arrival_day_box">
-          Suppose to arrive on
+          Supposed to arrive on
         </label>
 
         <input type="date" id="arrival_day_box" name="query_arrival_day">
@@ -101,7 +101,7 @@
 
               <div>
                 <small>
-                  Updated <%= time_ago_in_words(a_package.updated_at) %>
+                  Updated <%= time_ago_in_words(a_package.updated_at) %> ago
                   <a href="/delete_package/<%= a_package.id %>">Delete</a>
                 </small></div>
 
@@ -112,90 +112,3 @@
       </ul>
 
     </div>
-
-    <hr>
-    <div>
-      <div>
-        <table border="1">
-          <tr>
-            <th>
-              ID
-            </th>
-
-            <th>
-              Description
-            </th>
-
-            <th>
-              Status
-            </th>
-
-            <th>
-              Arrival day
-            </th>
-
-            <th>
-              Details
-            </th>
-
-            <th>
-              User
-            </th>
-
-            <th>
-              Created at
-            </th>
-
-            <th>
-              Updated at
-            </th>
-
-            <th>
-            </th>
-          </tr>
-
-          <% @list_of_packages.each do |a_package| %>
-            <tr>
-              <td>
-                <%= a_package.id %>
-              </td>
-
-              <td>
-                <%= a_package.description %>
-              </td>
-
-              <td>
-                <%= a_package.status %>
-              </td>
-
-              <td>
-                <%= a_package.arrival_day %>
-              </td>
-
-              <td>
-                <%= a_package.details %>
-              </td>
-
-              <td>
-                <%= a_package.user_id %>
-              </td>
-
-              <td>
-                <%= time_ago_in_words(a_package.created_at) %> ago
-              </td>
-              <td>
-                <%= time_ago_in_words(a_package.updated_at) %> ago
-              </td>
-
-              <td>
-                <a href="/packages/<%= a_package.id %>">
-                  Show details
-                </a>
-              </td>
-            </tr>
-          <% end %>
-        </table>
-      </div>
-    </div>
-
-    <hr>

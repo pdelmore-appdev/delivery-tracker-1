@@ -53,7 +53,7 @@ now = Date.today
 
     if the_package.valid?
       the_package.save
-      redirect_to("/", { :notice => "marked as received."} )
+      redirect_to("/", { :notice => "Marked as received."} )
     else
       redirect_to("/packages/#{the_package.id}", { :alert => the_package.errors.full_messages.to_sentence })
     end
