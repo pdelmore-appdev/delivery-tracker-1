@@ -23,7 +23,7 @@ class PackagesController < ApplicationController
     the_package.status = params.fetch("query_status")
     the_package.arrival_day = params.fetch("query_arrival_day")
     the_package.details = params.fetch("query_details")
-    the_package.user_id = params.fetch("query_user_id")
+    the_package.user_id = @current_user.id
 
     if the_package.valid?
       the_package.save
@@ -37,15 +37,16 @@ class PackagesController < ApplicationController
     the_id = params.fetch("path_id")
     the_package = Package.where({ :id => the_id }).at(0)
 
-    the_package.description = params.fetch("query_description")
+    # the_package.description = params.fetch("query_description")
     the_package.status = params.fetch("query_status")
-    the_package.arrival_day = params.fetch("query_arrival_day")
-    the_package.details = params.fetch("query_details")
-    the_package.user_id = params.fetch("query_user_id")
+    # the_package.arrival_day = params.fetch("query_arrival_day")
+    # the_package.details = params.fetch("query_details")
+    the_package.user_id = @current_user.id
+    the_package.updated_at = Time.current
 
     if the_package.valid?
       the_package.save
-      redirect_to("/packages/#{the_package.id}", { :notice => "Package updated successfully."} )
+      redirect_to("/", { :notice => "marked as received."} )
     else
       redirect_to("/packages/#{the_package.id}", { :alert => the_package.errors.full_messages.to_sentence })
     end
