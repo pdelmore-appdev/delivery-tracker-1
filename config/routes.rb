@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+get "/", to: redirect("/packages")
 
   # Routes for the Package resource:
 
